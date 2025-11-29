@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'buyer_home_screen.dart';
 import 'profile_screen.dart';
+// Import 2 file baru tadi
+import 'history_screen.dart'; 
+import 'chat_list_screen.dart';
 
 class BuyerMainLayout extends StatefulWidget {
   final String username;
@@ -13,7 +16,6 @@ class BuyerMainLayout extends StatefulWidget {
 class _BuyerMainLayoutState extends State<BuyerMainLayout> {
   int _selectedIndex = 0; // Tab yang aktif (0 = Home)
 
-  // Daftar halaman untuk tiap tab
   late final List<Widget> _screens;
 
   @override
@@ -21,9 +23,9 @@ class _BuyerMainLayoutState extends State<BuyerMainLayout> {
     super.initState();
     _screens = [
        BuyerHomeScreen(username: widget.username), // Tab 0: Home
-       const Center(child: Text("Halaman Riwayat (Coming Soon)")), // Tab 1: Riwayat
-       const Center(child: Text("Halaman Chat (Coming Soon)")), // Tab 2: Chat
-       const ProfileScreen(), // Tab 3: Profil & Logout
+       const HistoryScreen(),                      // Tab 1: Riwayat (SUDAH JADI)
+       const ChatListScreen(),                     // Tab 2: Chat (SUDAH JADI)
+       const ProfileScreen(),                      // Tab 3: Profil
     ];
   }
 
@@ -36,20 +38,21 @@ class _BuyerMainLayoutState extends State<BuyerMainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Menampilkan halaman sesuai tab yang dipilih
       body: _screens[_selectedIndex],
       
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xFF1F4E79),
         unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: "Riwayat"),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
+          BottomNavigationBarItem(icon: Icon(Icons.assignment_outlined), label: "Riwayat"),
+          BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline), label: "Pesan"),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: "Profil"),
         ],
       ),
     );

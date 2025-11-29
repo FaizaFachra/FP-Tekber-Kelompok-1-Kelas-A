@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 // Import file tujuan navigasi
-import 'seller/seller_home_screen.dart';
 import 'buyer/buyer_main_layout.dart'; 
+import 'seller/seller_main_layout.dart'; // <--- TAMBAHKAN INI
+// Hapus import 'seller/seller_home_screen.dart' kalau ada, karena sudah diganti layout
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -182,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Masuk ke Halaman Seller
                     Navigator.pushReplacement(
                       context, 
-                      MaterialPageRoute(builder: (_) => SellerHomeScreen(username: usernameInput))
+                      MaterialPageRoute(builder: (_) => SellerMainLayout(username: usernameInput))
                     );
                   } else {
                     // Masuk ke Halaman Buyer Layout (yang ada Navigasi Bawahnya)
