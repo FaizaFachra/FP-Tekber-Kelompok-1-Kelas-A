@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../screens/chat_screen.dart'; 
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../screens/chat_screen.dart'; // Import chat screen
 
 class ChatListScreen extends StatelessWidget {
-  // 1. Kita siapkan tempat untuk menerima username asli
-  final String username; 
+  // 1. Tambahkan variabel untuk menampung username asli
+  final String username;
 
-  // 2. Wajibkan username diisi saat file ini dipanggil
+  // 2. Wajibkan username diisi saat dipanggil
   const ChatListScreen({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
-    // 3. Pakai username asli (Faiza Fachra), BUKAN 'hafidz_buyer' lagi
+    // 3. Gunakan username asli, BUKAN "hafidz_buyer" lagi
     final myName = username; 
 
     return Scaffold(
@@ -23,7 +24,7 @@ class ChatListScreen extends StatelessWidget {
         children: [
           _buildChatItem(context, "Admin Laundry", "Klik untuk chat dengan admin", myName),
           const Divider(height: 1),
-          // Dummy lain
+          // Dummy lain biar rame
           _buildChatItem(context, "Kurir Laundry", "Pesanan sedang diantar...", myName), 
         ],
       ),
@@ -44,8 +45,7 @@ class ChatListScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            // Kirim username asli ke dalam room chat agar tersimpan di database dengan benar
-            builder: (_) => ChatScreen(myName: myName, otherName: name), 
+            builder: (_) => ChatScreen(myName: myName, otherName: name), // Masuk ke room chat
           ),
         );
       },
